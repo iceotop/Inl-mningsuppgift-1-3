@@ -63,6 +63,12 @@ document.getElementById('toggle-btn').addEventListener('click', function() {
     var menu = document.getElementById('category-menu');
     menu.classList.toggle('open');
 
+    if (document.body.classList.contains('menu-open')) {
+        document.body.classList.remove('menu-open');
+      } else {
+        document.body.classList.add('menu-open');
+      }
+
 });
 
 document.querySelector('#shelf-btn').addEventListener('click', function() {
