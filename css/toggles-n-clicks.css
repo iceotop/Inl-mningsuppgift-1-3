@@ -1,0 +1,20 @@
+
+/*--------------------TOGGLE CATEGORY-MENU--------------------*/
+.category-menu.open {
+    max-height: 600px;
+    padding: 1em; /* or any max height */
+  }
+
+/*FOR LAYING MOBILE (AND ALSO MAYBE TABLET)*/
+@media (max-height: 670px) {
+    .category-menu.open {
+      max-height: 182px;
+      padding: 1em;
+    }
+}
+
+/*VVV---EVENTUALLY CSS FOR FILTER-MENU ON CLICK & CSS FOR CATEGORY-ITEMS ON CLICK---VVV*/
+
+/*--------------------SELECT CATEGORY(/-IES)--------------------*/
+
+/*--------------------ACTIVATE SHELF OR HEAP--------------------*/

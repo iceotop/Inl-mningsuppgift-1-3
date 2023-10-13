@@ -1,0 +1,160 @@
+@font-face {
+  font-family: 'Typewriter';
+  src: url('../fonts/Bohemian-Typewriter.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+/* Reset some default browser styles */
+body, ul {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Set up a vintage color scheme and font */
+body {
+  font-family: 'Times New Roman', serif;
+  background-color: #f4f1de;
+  color: #3c2f2f;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  width: 75%;
+  margin: auto;
+}
+
+/* Style the header */
+#main-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #e07a5f;
+  padding: 1em;
+}
+
+.nav-item {
+  padding-left: 20em;
+}
+
+.nav-link {
+  position: relative;
+  z-index: 2;
+  color: #3c2f2f;
+  margin-left: 1em;
+}
+
+/* Style the main content */
+#main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+  align-items: center;
+}
+
+#search-section, #intro-section {
+  padding: 2em;
+  background-color: #81a1c1;
+  border-radius: 8px;
+}
+
+#search-form {
+  position: relative;
+}
+
+#library-title {
+  margin-bottom: 1em;
+}
+
+.search-input {
+  font-family: 'Typewriter', serif;
+  width: 100%;
+  padding: 0.75em;  /* Increased padding for a taller search bar */
+  border-radius: 25px;  /* Rounded edges for a bubbly feel */
+  border: 1px solid #3c2f2f;
+  font-size: 1.1em;  /* Larger text */
+  outline: none;  /* Remove the default outline */
+  
+}
+
+#colored-text {
+  position: absolute;
+  top: 0.85em;  /* match the top padding of .search-input */
+  margin-left: 0.8em;
+  font-family: 'Typewriter', serif;
+  font-size: 1.1em;
+  pointer-events: none;
+}
+
+/* Add a subtle box shadow on focus for a modern touch */
+.search-input:focus {
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.search-input::placeholder {
+  color: lightblue;
+}
+
+/* Style the footer */
+#main-footer {
+  background-color: #e07a5f;
+  padding: 1em;
+  text-align: center;
+}
+
+.footer-link {
+  position: relative;
+  z-index: 2;
+  color: #3c2f2f;
+  margin: 0 0.5em;
+}
+
+/* Animation */
+
+/* General styling for the nav items */
+li.nav-item, li.footer-item {
+  position: relative;
+  display: block;
+  z-index: 1;
+}
+
+/* Adding a pseudo-element for the background color bar */
+li.nav-item::before, li.footer-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: #f4f1de;
+  transition: width 0.5s ease-in-out;
+  z-index: 0;
+}
+
+/* Expanding the color bar on hover */
+li.nav-item:hover::before, li.footer-item:hover::before {
+  width: 100%;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  #main-content {
+      grid-template-columns: 1fr;
+  }
+
+  body {
+      width: 100%;
+      padding: 1em;
+  }
+}

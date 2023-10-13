@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search results</title>
+    <link rel="stylesheet" href="css/search-results.css">
+    <link rel="stylesheet" href="css/toggles-n-clicks.css">
+</head>
+<body>
+    <div id="vintage">Vintage</div>
+    
+    <header class="results-header">
+        
+        <nav id="filter-options">
+            <ul class="filter-list">
+                <li id="shelf-btn" class="filter-item"><img src="icons/shelf.png" alt="shelf"></li>
+                <li id="heap-btn" class="filter-item"><img src="icons/heap.png" alt="heap"></li>
+            </ul>
+        </nav>
+        
+        <div class="category-menu-container">
+            <section id="category-menu" class="category-menu">
+                <ul class="category-list">
+                    <li class="category-item category-item-1"><a href="#"><span>DC Comics</span></a></li>
+                    <li class="category-item category-item-2"><a href="#"><span>Marvel</span></a></li>
+                    <li class="category-item category-item-3"><a href="#"><span>Dark Horse Comics</span></a></li>
+                    <li class="category-item category-item-4"><a href="#"><span>EC Comics</span></a></li>
+                    <li class="category-item category-item-5"><a href="#"><span>British</span></a></li>
+                    <li class="category-item category-item-6"><a href="#"><span>European</span></a></li>
+                    <li class="category-item category-item-7"><a href="#"><span>Japanese</span></a></li>
+                    <li class="category-item category-item-8"><a href="#"><span>Independents</span></a></li>
+                    <li class="category-item category-item-9"><a href="#"><span>Other Publishers</span></a></li>
+                </ul>
+            </section>
+
+            <img id="toggle-btn" src="icons/category-menu.png" alt="menu"></img>
+        </div>
+    </header>
+    
+        
+
+    <main class="results-main">
+        <section class="search-data">
+            <h2 id="your-search"></h2>
+            <h4 id="results-amount-found"></h4>
+        </section>
+
+        <section id="book-list" class="book-list"></section>
+        <a href="index.html" class="back-link">Back to search</a>
+    </main>
+
+    <script src="js/search-results.js"></script>
+
+    <div id="library">Library</div>
+</body>
+</html>
