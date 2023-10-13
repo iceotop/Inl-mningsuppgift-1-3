@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const searchQuery = searchInput.value;
         
         if (searchQuery) {
-            window.location.href = `/search-results.html?q=${encodeURIComponent(searchQuery)}`;
+            window.location.href = `/Inl-mningsuppgift-1-3/search-results.html?q=${encodeURIComponent(searchQuery)}`;
         }
     });
 
