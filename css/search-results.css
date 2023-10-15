@@ -11,6 +11,15 @@
     box-sizing: border-box;
 }
 
+*::-webkit-scrollbar {
+    width: 0.4em;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 8px;
+}
+
 html {
     display: flex;
     justify-content: center;
@@ -21,14 +30,14 @@ html {
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    max-height: 98vh;
     width: 98%;
     margin: auto;
-    margin-top: 0.25em;
-    background-color: #f4f1de;
-    border: 2px solid #3c2f2f;
+    background-color: #f4f1de9c;
     border-radius: 8px;
     font-family: 'Times New Roman', serif;
-    overflow: auto;
 }
 
 a {
@@ -52,7 +61,7 @@ ul {
     z-index: 1000;
     text-align: center;
     padding: 0.25em;
-    margin-bottom: 1.8em;
+    margin-bottom: 3em;
 }
 
 #filter-options {
@@ -104,7 +113,7 @@ ul {
     max-height: 0;
     max-width: 350px;
     margin: auto;
-    overflow: scroll;
+    overflow: auto;
     transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
 }
@@ -137,7 +146,7 @@ ul {
     height: 100%;
     padding: 0.5em;
     margin: 0.25em 0em;
-    border: 1px solid black;
+    border: 1px solid #575757;
 }
 
 #category-menu ul li a span {  /* New style */
@@ -159,44 +168,77 @@ ul {
 /*------------------------------------------MAIN BODY (CONTENT)------------------------------------------*/
 
 .results-main {
-    
-    padding: 1em;
+    flex-grow: 1;
+    overflow: auto;
+    padding: 0em 1em 1em 1em;
 }
 
-.book-list {
+#book-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(14em, 1fr));
     gap: 1em;
+    justify-items: start;
 }
 
-#book-list div {
+.book-card {
     background-color: #81a1c1;
     border-radius: 8px;
-    padding: 1em;
-    text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    transition: transform 0.3s;
+   
+    width: 14em; 
+    height: 16em;
 }
 
-#book-list div a {
-    text-decoration: none;
-    color: #3c2f2f;
+.book-card:hover {
+    transform: scale(1.05);
 }
 
-#book-list div a img {
+.book-image {
     width: 100%;
-    max-width: 75px;
-    border-radius: 4px;
-    margin-bottom: 0.5em;
+    height: 60%;
+    background-color: #e07a5f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: auto;
+}
+
+.book-image img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.book-title, .book-year {
+    color: #3c2f2f;
+    margin-top: auto;
+    text-align: center;
+    width: 90%; /* to keep some spacing on the sides */
+}
+
+.book-title {
+    height: 20%;
+    font-size: 1.2em;
+    overflow: hidden;
+}
+
+.book-year {
+    height: 10%;
 }
 
 .back-link {
     display: block;
     margin-top: 1em;
-    color: #3c2f2f;
+    color: #575757;
 }
 
 
 /*------------------------------------------MEDIA QUERIES------------------------------------------*/
-
 /*---------------------GALAXY FOLD/TABLETS---------------------*/
 @media (min-width: 400px) {
 
@@ -214,22 +256,14 @@ ul {
     }
     
 }
-
-@media (min-width: 401px) and (max-width: 1349px) {
-
-    body {
-        background-color: #f4f1de9c;
-    }
-}
 /*---------------------LARGER TABLETS/DESKTOP---------------------*/
 @media (min-width: 1350px) {
 
     body {
         display: flex;
+        flex-direction: row;
         width: 85%;
         margin: auto;
-        margin-top: 4em;
-        
         background-color: transparent;
         border: none;
     }
@@ -239,9 +273,10 @@ ul {
     }
     .results-main {
         flex: 2;
+        max-height: 85vh;
         background-color: #f4f1de;
-        border: 2px solid #3c2f2f;
         border-radius: 8px;
+        padding: 1em 1em 1em 1em;
     }
     .category-menu-container {
         position: static;
@@ -257,11 +292,16 @@ ul {
     }
 }
 /*---------------------FOR (VERTICALLY) LONGER TABLETS---------------------*/
-@media (min-height: 1200px) and (max-width: 1348px) {
+@media (min-height: 1181px) and (max-width: 1348px) {
+
+    .results-main {
+        height: 60vh;
+    }
 
     #vintage, #library {
         display: block;
         position: fixed;
+        z-index: -1;
         text-align: center;
         width: 100%;
         font-size: calc((10vw + 10vh) * 0.8);

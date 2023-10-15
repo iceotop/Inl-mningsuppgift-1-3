@@ -20,45 +20,45 @@ document.addEventListener("DOMContentLoaded", function () {
             return response.json();
         })
         .then(data => {
-            // Check if there are items in the response
-            if (data.items && data.items.length > 0) {
-                // Iterate through the items and display the first 20 results
-                for (let i = 0; i < Math.min(data.items.length, 20); i++) {
-                    const book = data.items[i];
-                    const bookID = book.id; // Use 'id' property to get the book's unique identifier
-                    const coverUrl = book.volumeInfo && book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : 'default-thumbnail.jpg';
-                    const title = book.volumeInfo.title;
-                    const year = book.volumeInfo.publishedDate ? book.volumeInfo.publishedDate.substring(0, 4) : 'N/A';
+            data.items.slice(0, 20).forEach(book => {
+                const bookID = book.id;
+                const coverUrl = book.volumeInfo && book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : 'default-thumbnail.jpg';
+                const title = book.volumeInfo.title;
+                const year = book.volumeInfo.publishedDate ? book.volumeInfo.publishedDate.substring(0, 4) : 'N/A';
+            
+                const bookContainer = document.createElement("a");
+                bookContainer.className = 'book-card';
+                bookContainer.href = `/details.html?id=${bookID}&q=${encodeURIComponent(searchQuery)}`; 
 
-                    // Create elements for each book and add them to the HTML
-                    const bookContainer = document.createElement("div");
-                    const bookContainerLink = document.createElement("a");
-                    const bookImage = document.createElement("img");
-                    const bookTitle = document.createElement("p");
-                    const bookYear = document.createElement("p");
+                const bookImageDiv = document.createElement("div");
+                bookImageDiv.className = 'book-image';
+                const bookImage = document.createElement("img");
+                bookImage.src = coverUrl; 
+                bookImage.alt = "cover image";
+                bookImageDiv.appendChild(bookImage);
 
-                    bookContainerLink.href = `/details.html?id=${bookID}&q=${encodeURIComponent(searchQuery)}`; // Use 'id' in the query parameter
-                    bookImage.src = coverUrl; bookImage.alt = "cover image";
-                    bookTitle.textContent = title;
-                    bookYear.textContent = `${year}`;
+                const bookTitleDiv = document.createElement("div");
+                bookTitleDiv.className = 'book-title';
+                bookTitleDiv.textContent = title;
 
-                    bookContainerLink.appendChild(bookImage);
-                    bookContainerLink.appendChild(bookTitle);
-                    bookContainerLink.appendChild(bookYear);
-                    bookContainer.appendChild(bookContainerLink);
+                const bookYearDiv = document.createElement("div");
+                bookYearDiv.className = 'book-year';
+                bookYearDiv.textContent = year;
 
-                    document.getElementById("book-list").appendChild(bookContainer);
-                }
-            } else {
-                // Handle the case where no results were found
-                errorMessage()
-            }
+                bookContainer.appendChild(bookImageDiv);
+                bookContainer.appendChild(bookTitleDiv);
+                bookContainer.appendChild(bookYearDiv);
+
+                document.getElementById("book-list").appendChild(bookContainer);
+
+            });
         })
         .catch(error => {
             console.error('Fetch error:', error);
         });
 });
 
+//------------------REVEAL CATEGORY MENU------------------//
 document.getElementById('toggle-btn').addEventListener('click', function() {
     var menu = document.getElementById('category-menu');
     menu.classList.toggle('open');
@@ -71,10 +71,48 @@ document.getElementById('toggle-btn').addEventListener('click', function() {
 
 });
 
-document.querySelector('#shelf-btn').addEventListener('click', function() {
-    this.classList.toggle('chosen');
+//------------------SELECT CATEGORY(/-IES)------------------//
+document.querySelectorAll('#category-menu ul li a').forEach(item => {
+    item.addEventListener('click', event => {
+        event.currentTarget.classList.toggle('selected');
+        // Save state to localStorage
+        localStorage.setItem(event.currentTarget.textContent, event.currentTarget.classList.contains('selected'));
+    });
+    // Load state from localStorage on page load
+    const isSelected = localStorage.getItem(item.textContent);
+    if (isSelected === 'true') {
+        item.classList.add('selected');
+    }
 });
 
-document.querySelector('#heap-btn').addEventListener('click', function() {
-    this.classList.toggle('chosen');
+//------------------CHOOSE BETWEEN SHELF OR HEAP------------------//
+const shelfBtn = document.getElementById('shelf-btn');
+const heapBtn = document.getElementById('heap-btn');
+
+// Load Shelf/Heap choice from localStorage on page load
+const shelfHeapChoice = localStorage.getItem('shelfHeapChoice');
+if (shelfHeapChoice) {
+    shelfBtn.classList.toggle('chosen', shelfHeapChoice === 'shelf');
+    heapBtn.classList.toggle('chosen', shelfHeapChoice === 'heap');
+} else {
+    shelfBtn.classList.add('chosen');
+}
+
+shelfBtn.addEventListener('click', function() {
+    this.classList.add('chosen');
+    heapBtn.classList.remove('chosen');
+    // Save choice to localStorage
+    localStorage.setItem('shelfHeapChoice', 'shelf');
+});
+
+heapBtn.addEventListener('click', function() {
+    this.classList.add('chosen');
+    shelfBtn.classList.remove('chosen');
+    // Save choice to localStorage
+    localStorage.setItem('shelfHeapChoice', 'heap');
+});
+
+//------------------CLEAR ON PAGE SWITCH TO INDEX------------------//
+window.addEventListener('beforeunload', function() {
+    localStorage.setItem('lastPage', window.location.href);
 });

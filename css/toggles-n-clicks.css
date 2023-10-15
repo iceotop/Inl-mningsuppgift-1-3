@@ -1,24 +1,36 @@
 
 /*--------------------TOGGLE CATEGORY-MENU--------------------*/
 .category-menu.open {
-    max-height: 600px;
-    padding: 1em; /* or any max height */
-  }
+  max-height: 600px;
+  padding: 1em; /* or any max height */
+}
 
 /*FOR LAYING MOBILE (AND ALSO MAYBE TABLET)*/
 @media (max-height: 670px) {
-    .category-menu.open {
-      max-height: 182px;
-      padding: 1em;
-    }
+  .category-menu.open {
+    max-height: 182px;
+    padding: 1em;
+  }
 }
 
+/*REST OF PAGE NOT SCROLLABLE WHILE MENU TOGGLED*/
 body.menu-open {
   overflow: hidden;
 }
 
-/*VVV---EVENTUALLY CSS FOR FILTER-MENU ON CLICK & CSS FOR CATEGORY-ITEMS ON CLICK---VVV*/
-
 /*--------------------SELECT CATEGORY(/-IES)--------------------*/
 
-/*--------------------ACTIVATE SHELF OR HEAP--------------------*/
+#category-menu ul li a.selected {
+  background-color: #e07a5f;
+  color: #f4f1de;
+  border-color: #f4f1de;
+}
+
+/*--------------------CHOOSE BETWEEN SHELF OR HEAP--------------------*/
+
+#shelf-btn.chosen, #heap-btn.chosen {
+  background-color: #d0fdff;
+  border-radius: 8px;  /* Optional: for rounded corners */
+  transform: scale(0.95);  /* Slightly scales down the image */
+  transition: transform 0.3s ease;  /* Smooth transition */
+}
