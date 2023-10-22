@@ -173,6 +173,26 @@ ul {
     padding: 0em 1em 1em 1em;
 }
 
+.search-data h2, .search-data h4 {
+    display: block;
+    margin-bottom: 0.25em;
+    margin-right: 0.25em;
+    color: #575757;
+    font-family: 'Arial', sans-serif;
+}
+
+.search-data h2 {
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.search-data h4 {
+    margin-left: 0.5em;
+    font-size: 1.2em;
+    font-weight: 400;
+    color: #555;
+}
+
 #book-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(14em, 1fr));
@@ -240,7 +260,19 @@ ul {
 
 /*------------------------------------------MEDIA QUERIES------------------------------------------*/
 /*---------------------GALAXY FOLD/TABLETS---------------------*/
-@media (min-width: 400px) {
+@media (min-width: 280px) and (max-width: 550px) {
+
+    .search-data h2 {
+        font-size: 1.3em;
+    }
+    
+    .search-data h4 {
+        font-size: 1em;
+    }
+
+}
+
+@media (min-width: 415px) {
 
     #filter-options {
         background-color: transparent;

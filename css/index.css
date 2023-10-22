@@ -4,15 +4,31 @@
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-/* Reset some default browser styles */
-body, ul {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #ff7e5f, #feb47b) fixed;
+  height: 100%;
+  background-size: cover;
+}
+
+/* Set up a vintage color scheme and font */
+body {
+  font-family: 'Times New Roman', serif;
+  background-color: #f4f1de;
+  color: #3c2f2f;
+  min-height: 100vh;
+  width: 75%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 a {
@@ -21,18 +37,6 @@ a {
 
 ul {
   list-style: none;
-}
-
-/* Set up a vintage color scheme and font */
-body {
-  font-family: 'Times New Roman', serif;
-  background-color: #f4f1de;
-  color: #3c2f2f;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  min-height: 100vh;
-  width: 75%;
-  margin: auto;
 }
 
 /* Style the header */
@@ -59,14 +63,33 @@ body {
 #main-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2em;
+  gap: 1.5em;
   align-items: center;
+  flex-grow: 1;
 }
 
-#search-section, #intro-section {
+#intro-section, #search-section {
   padding: 2em;
   background-color: #81a1c1;
   border-radius: 8px;
+  max-width: 85%;
+}
+
+#intro-section {
+  margin: auto;
+}
+
+#search-section {
+  min-width: 27em;
+}
+
+#search-section p {
+  display: none;
+  margin: 2.5em 0.5em 0.5em 0.5em;
+  padding: 1em;
+  font-size: 1.2em;
+  text-align: start;
+  border: 1px solid black;
 }
 
 #search-form {
@@ -138,7 +161,7 @@ li.nav-item::before, li.footer-item::before {
   width: 0;
   height: 100%;
   background-color: #f4f1de;
-  transition: width 0.5s ease-in-out;
+  transition: width 0.15s ease-in-out;
   z-index: 0;
 }
 
@@ -146,15 +169,177 @@ li.nav-item::before, li.footer-item::before {
 li.nav-item:hover::before, li.footer-item:hover::before {
   width: 100%;
 }
-
+/*------------------------------------------MEDIA QUERIES------------------------------------------*/
 /* Responsiveness */
-@media (max-width: 768px) {
-  #main-content {
-      grid-template-columns: 1fr;
+@media (max-width: 1330px) {
+  body {
+    width: 100%;
+    padding: 1em;
+  }
+}
+/*---------------------MOBILE DEVICES---------------------*/
+@media (max-width: 450px) {
+  body {
+    padding: 0;
   }
 
+  #main-content {
+    display: flex;
+    width: 100%;
+    text-align: center;
+  }
+
+  #main-content h1 {
+    font-size: 3em;
+  }
+
+  #intro-section {
+    display: none;
+    max-width: none;
+  }
+
+  #search-section {
+    width: 100%;
+    padding: 1em 0.25em 0em 0.25em;
+    border-radius: 0px;
+    min-width: auto;
+    max-width: none;
+  }
+
+  #search-section p {
+    display: block;
+  }
+
+  #main-header {
+    justify-content: center;
+    padding: 1em;
+  }
+
+  .nav-item {
+    width: 100%;
+    padding: 1em;
+  }
+
+  .nav-link {
+    font-size: 1.5em;
+    margin: 2em;
+    width: 5em;
+  }
+
+  .search-input {
+    font-size: 1.1em;
+  }
+
+  #main-footer {
+    padding: 1em;
+  }
+
+  .footer-link {
+    font-size: 1.5em;
+  }
+
+  .footer-item {
+    padding: 0.5em;
+  }
+  
+}
+
+/*---------------------FOR (VERTICALLY) LONGER TABLETS---------------------*/
+@media(min-height: 1350px) { 
   body {
-      width: 100%;
-      padding: 1em;
+    min-height: 60vh;
+    width: 95%;
+    border-radius: 12px;
+  }
+  
+  .nav-item {
+    width: 100%;
+    padding: 0.5em;
+    padding-left: 6em;
+  }
+
+  .nav-link {
+    font-size: 1.5em;
+    margin: 0.5em;
+    width: 5em;
+  }
+
+  #intro-section {
+    padding: 1em;
+    font-size: 1.4em;
+  }
+
+  #search-section h1 {
+    font-size: 2.5em;
+  }
+
+  .search-input {
+    font-size: 1.1em;
+  }
+
+  #main-footer {
+    padding: 1em;
+  }
+
+  .footer-link {
+    font-size: 1.5em;
+  }
+
+  .footer-item {
+    padding: 0.25em;
+  }
+}
+
+@media(min-width: 451px) and (max-width: 870px) {
+  body {
+    min-height: 60vh;
+    width: 98%;
+    border-radius: 12px;
+  }
+
+  .nav-item {
+    width: 100%;
+    padding: 0.5em;
+    padding-left: 6em;
+  }
+
+  .nav-link {
+    font-size: 1.5em;
+    margin: 0.5em;
+    width: 5em;
+  }
+
+  #main-content {
+    grid-template-columns: none;
+    justify-items: center;
+  }
+
+  #intro-section {
+    display: none;
+  }
+
+  #search-section {
+    max-height: 95%;
+  }
+
+  #search-section h1 {
+    font-size: 2.25em;
+  }
+  
+  #search-section p {
+    display: block;
+    font-size: 1.4em;
+  }
+
+  #main-footer {
+    padding: 1em;
+  }
+
+  .footer-link {
+    font-size: 1.5em;
+  }
+
+  .footer-item {
+    padding: 0.25em;
   }
 }

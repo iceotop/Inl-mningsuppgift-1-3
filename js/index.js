@@ -3,13 +3,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("search-input");
     const coloredText = document.getElementById("colored-text");
 
+    localStorage.clear();
+
     searchForm.addEventListener("submit", event => {
         event.preventDefault();  // Prevent the default form submission behavior
         
         const searchQuery = searchInput.value;
         
         if (searchQuery) {
-            window.location.href = `/Inl-mningsuppgift-1-3/search-results.html?q=${encodeURIComponent(searchQuery)}`;
+            window.location.href = `/search-results.html?q=${encodeURIComponent(searchQuery)}`;
         }
     });
 

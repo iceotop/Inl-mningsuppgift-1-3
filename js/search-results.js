@@ -20,6 +20,22 @@ document.addEventListener("DOMContentLoaded", function () {
             return response.json();
         })
         .then(data => {
+
+            const searchInfoSection = document.createElement('section');
+            searchInfoSection.className = 'search-data';
+            
+            const searchQueryHeading = document.createElement('h2');
+            searchQueryHeading.id = 'search-term';
+            searchQueryHeading.textContent = `"${searchQuery}"`;
+            
+            const resultsCountHeading = document.createElement('h4');
+            resultsCountHeading.id = 'results-count';
+            resultsCountHeading.textContent = `Results: ${data.items.length}`;
+            
+            searchInfoSection.appendChild(searchQueryHeading);
+            searchInfoSection.appendChild(resultsCountHeading);
+            document.querySelector('.results-main').prepend(searchInfoSection);
+
             data.items.slice(0, 20).forEach(book => {
                 const bookID = book.id;
                 const coverUrl = book.volumeInfo && book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : 'default-thumbnail.jpg';
