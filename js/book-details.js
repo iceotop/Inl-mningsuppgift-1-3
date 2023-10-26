@@ -26,23 +26,34 @@ function fetchBookDetails(bookId) {
             const accessInfo = data.accessInfo;
 
             // Create HTML elements to display book details
-            const bookDetailsContainer = document.getElementById("book-details");
+            const shorterBookDetailsContainer = document.getElementById("shorter-book-details");
+            const longerBookDetailsContainer = document.getElementById("longer-book-details");
             const imgElement = document.createElement("img");
             imgElement.src = book.imageLinks.thumbnail; imgElement.alt = "book cover";
             const titleElement = document.createElement("h2");
             titleElement.textContent = book.title || "Title not available";
+            const buttonsContainer = document.createElement('div');
+
+            buttonsContainer.id = 'buttons-container';
+            const readButton = document.createElement('button');
+            readButton.id = 'read-button';
+            readButton.textContent = 'Read';
+            const downloadButton = document.createElement('button');
+            downloadButton.id = 'download-button';
+            downloadButton.textContent = 'Download';
+
             const authorElement = document.createElement("p");
-            authorElement.textContent = `Author: ${book.authors ? book.authors.join(", ") : "Unknown"}`;
+            authorElement.innerHTML = `<b>Author:</b> ${book.authors ? book.authors.join(", ") : "Unknown"}`;
             const pageCountElement = document.createElement("p");
-            pageCountElement.textContent = `Page Count: ${book.pageCount || "N/A"}`;
+            pageCountElement.innerHTML = `<b>Page Count:</b> ${book.pageCount || "N/A"}`;
             const isbnElement = document.createElement("p");
-            isbnElement.textContent = `ISBN: ${book.industryIdentifiers ? book.industryIdentifiers[0].identifier : "N/A"}`;
+            isbnElement.innerHTML = `<b>ISBN:</b> ${book.industryIdentifiers ? book.industryIdentifiers[0].identifier : "N/A"}`;
             const publishedByElement = document.createElement("p");
-            publishedByElement.textContent = `Published By: ${book.publisher || "N/A"}`;
+            publishedByElement.innerHTML = `<b>Published By:</b> ${book.publisher || "N/A"}`;
             const languageElement = document.createElement("p");
-            languageElement.textContent = `Language: ${book.language || "N/A"}`;
+            languageElement.innerHTML = `<b>Language:</b> ${book.language ? book.language.toUpperCase() : "N/A"}`;
             const synopsisElement = document.createElement("p");
-            synopsisElement.innerHTML = `Synopsis: ${book.description || "Synopsis not available"}`;
+            synopsisElement.innerHTML = `${book.description || "Synopsis not available"}`;
 
             // Check if the preview is available and embeddable
             if (accessInfo.embeddable && (accessInfo.viewability === 'PARTIAL' || accessInfo.viewability === 'ALL_PAGES')) {
@@ -54,15 +65,24 @@ function fetchBookDetails(bookId) {
                 });
             }
 
-            // Append book details to the container
-            bookDetailsContainer.appendChild(imgElement);
-            bookDetailsContainer.appendChild(titleElement);
-            bookDetailsContainer.appendChild(authorElement);
-            bookDetailsContainer.appendChild(pageCountElement);
-            bookDetailsContainer.appendChild(isbnElement);
-            bookDetailsContainer.appendChild(publishedByElement);
-            bookDetailsContainer.appendChild(languageElement);
-            bookDetailsContainer.appendChild(synopsisElement);
+            // Append book details to containers
+            const imgElementDiv = document.createElement("div");
+            imgElementDiv.id = 'img-container';
+            imgElementDiv.appendChild(imgElement);
+
+            shorterBookDetailsContainer.appendChild(imgElementDiv);
+            shorterBookDetailsContainer.appendChild(titleElement);
+
+            buttonsContainer.appendChild(readButton);
+            buttonsContainer.appendChild(downloadButton);
+            shorterBookDetailsContainer.appendChild(buttonsContainer);
+
+            shorterBookDetailsContainer.appendChild(authorElement);
+            shorterBookDetailsContainer.appendChild(pageCountElement);
+            shorterBookDetailsContainer.appendChild(isbnElement);
+            shorterBookDetailsContainer.appendChild(publishedByElement);
+            shorterBookDetailsContainer.appendChild(languageElement);
+            longerBookDetailsContainer.appendChild(synopsisElement);
         })
         .catch(error => {
             console.error('Fetch error:', error);

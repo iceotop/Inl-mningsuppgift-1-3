@@ -1,0 +1,154 @@
+/*------------------------------------------GENERAL------------------------------------------*/
+
+@font-face {
+    font-family: 'Metropolis';
+    src: url('Metropolis-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+    width: 0.4em;
+    height: 0.4em;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 8px;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #fde55a, #66af66) fixed;
+    height: 100%;
+    background-size: cover;
+}
+
+body {
+    width: 98%;
+    height: 100vh;
+    background-color: #f4f1dea6;
+    color: #3c2f2f;
+    font-family: 'Metropolis', sans-serif;
+    font-size: 0.9em;
+    margin-bottom: 0.5em;
+    border-radius: 5px;
+}
+
+/*------------------------------------------MAIN BODY (CONTENT)------------------------------------------*/
+
+#main-content {
+    height: 100%;
+    overflow: auto;
+    padding: 1em;
+}
+
+#shorter-book-details {
+    border: 1px solid #3c2f2f;
+    border-radius: 5px;
+    padding: 1em;
+}
+
+#img-container {
+    width: 100%;
+    height: 12em;
+    background-color: rgba(235, 220, 158, 0.473);
+    margin: auto;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#img-container img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#main-content h2 {
+    text-align: center;
+    margin-top: 0.25em;
+    margin-bottom: 0.5em;
+    font-size: 1.9em;
+    overflow-x: hidden;
+}
+
+#buttons-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+#read-button, #download-button {
+    background-color: #66af66;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5em 1em;
+    margin: 0 0.5em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#read-button:hover, #download-button:hover {
+    background-color: #e7d674;
+}
+
+#longer-book-details {
+    margin-top: 1em;
+}
+
+#return-results-page {
+    display: inline-block;
+    margin-top: 1em;
+    color: #3c2f2f;
+    text-decoration: underline;
+}
+
+
+/*------------------------------------------MEDIA QUERIES------------------------------------------*/
+/*---------------------LAYING PHONES---------------------*/
+@media (min-width: 450px) {
+    #book-details {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+}
+
+@media (min-width: 600px) {
+    #shorter-book-details {
+        min-width: 20em;
+        min-height: 25em;
+        margin-left: 1em;
+    }
+}
+
+/*---------------------LAYING TABLETS---------------------*/
+@media (min-width: 950px) {
+    body {
+        max-width: 55em;
+        max-height: 35em;
+    }  
+}
+
+/*---------------------STANDING TABLETS---------------------*/
+@media (min-height: 950px) {
+    body {
+        max-width: 55em;
+        max-height: 35em;
+    }
+}
