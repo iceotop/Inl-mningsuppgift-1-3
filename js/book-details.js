@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Fetch book details using the book ID
     fetchBookDetails(bookId);
 
-    document.getElementById("return-results-page").href = `/search-results.html?q=${encodeURIComponent(searchQuery)}`;
+    document.getElementById("return-results-page").href = `/Inl-mningsuppgift-1-3/search-results.html?q=${encodeURIComponent(searchQuery)}`;
 });
 
 function fetchBookDetails(bookId) {
